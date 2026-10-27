@@ -33,6 +33,8 @@ py -3.11 -m venv .venv
 
 If you installed Python 3.12, replace `-3.11` with `-3.12`. If the Python launcher `py` is unavailable, use `python -m venv .venv` after confirming `python --version`. Visit **http://127.0.0.1:8000**. Choose **Build sample index**, then **Ask**. Evidence-only mode works immediately with no pip install and no Ollama.
 
+The browser page provides two answer methods: **Use local LLM with document evidence** runs the grounded answer through the local Ollama model, while **Show matching document passages only** works without Ollama and lets you read the retrieved evidence directly. The local LLM option requires Ollama and the configured `llama3.2:latest` model.
+
 Optional PDF support:
 
 ```powershell
@@ -46,7 +48,7 @@ For macOS/Linux, use `python3 -m venv .venv`, then `.venv/bin/python app.py`; us
 Start Ollama. In a separate terminal, download models once:
 
 ```powershell
-ollama pull nomic-embed-text:v1.5
+ollama pull llama3.2:latest
 ollama pull qwen2.5:1.5b
 ollama list
 ollama run qwen2.5:1.5b "Reply with READY"
@@ -90,7 +92,7 @@ For weaker laptops, try `ollama pull qwen2.5:0.5b` and select it in the UI. It h
 .\.venv\Scripts\python.exe evaluate.py --mode semantic --k 3
 ```
 
-The last command needs Ollama and the embedding model. Source hit rate asks whether the expected document appears in top-k. Phrase coverage asks whether all selected evidence phrases occur in the retrieved passages from that source. Neither proves the generated answer is correct. A three-document corpus makes document hit rate easy to inflate; add distractor documents before claiming strong retrieval performance.
+The last command needs Ollama and the `llama3.2:latest` retrieval model. Source hit rate asks whether the expected document appears in top-k. Phrase coverage asks whether all selected evidence phrases occur in the retrieved passages from that source. Neither proves the generated answer is correct. A three-document corpus makes document hit rate easy to inflate; add distractor documents before claiming strong retrieval performance.
 
 Manually score all ten generated answers: correct supported facts, unsupported claims, citation support, abstention on the two unanswerable questions, and latency. A citation label existing in the context is only a syntax check. Verify that its passage actually supports the claim. Record method, chunk size, overlap, k, generation model, and results. Change one setting at a time.
 

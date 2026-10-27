@@ -15,8 +15,8 @@
 <tr><td>Language</td><td>Python 3.11 or 3.12, 64-bit</td><td>Familiar syntax and standard-library server; no application framework is needed.</td></tr>
 <tr><td>Editor and interface</td><td>Any Python editor and a browser</td><td>Students can use their existing editor. Browser interface is included.</td></tr>
 <tr><td>Local model runtime</td><td>Ollama</td><td>Serves pretrained models on the student's own computer.</td></tr>
-<tr><td>Embedding model</td><td>nomic-embed-text:v1.5</td><td>Turns chunks and questions into comparable semantic vectors.</td></tr>
-<tr><td>Generation model</td><td>qwen2.5:1.5b</td><td>Compact local instruction model; smaller qwen2.5:0.5b is an optional fallback with lower quality.</td></tr>
+<tr><td>Embedding model</td><td>llama3.2:latest</td><td>Turns chunks and questions into comparable semantic vectors.</td></tr>
+<tr><td>Generation model</td><td>llama3.2:latest</td><td>Local instruction model used for grounded answers and semantic retrieval.</td></tr>
 <tr><td>Search and storage</td><td>Python lists and cosine similarity</td><td>Makes ranking transparent. TF-IDF mode works without a model.</td></tr>
 <tr><td>PDF extraction</td><td>Optional pypdf</td><td>Supports text-based PDFs. Supplied TXT files need no pip packages.</td></tr>
 </tbody></table>
@@ -27,10 +27,10 @@
 .\.venv\Scripts\python.exe app.py
 
 # In a second terminal, after installing and starting Ollama:
-ollama pull nomic-embed-text:v1.5
-ollama pull qwen2.5:1.5b
+ollama pull llama3.2:latest
+ollama pull llama3.2:latest
 ollama list
-ollama run qwen2.5:1.5b "Reply with READY"
+ollama run llama3.2:latest "Reply with READY"
 
 # Optional, for PDF uploads only:
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt</pre>

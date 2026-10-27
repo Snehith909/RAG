@@ -105,8 +105,8 @@ class Handler(BaseHTTPRequestHandler):
                 elif no_overlap and mode == 'rag':
                     answer = "I don't know from these documents. No keyword overlap was found."
                 else:
-                    model = body.get('model', 'qwen2.5:1.5b')
-                    if model not in ('qwen2.5:1.5b', 'qwen2.5:0.5b'):
+                    model = body.get('model', 'llama3.2:latest')
+                    if model not in ('llama3.2:latest',):
                         raise ValueError('Choose one of the provided local generation models.')
                     answer = generate(question, hits, model, use_rag=mode == 'rag')
                 result = {'answer': answer, 'hits': hits, 'answer_mode': mode,
